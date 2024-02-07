@@ -2,9 +2,7 @@
 The project is for performing CRUD operations on list of books using MERN Stack 
 
 ## Run the Project
-- Install MongoDB Compass and make a database named 'Bookstore' and cluster named 'books'
-- Open a split terminal and open `client` and `server` separately on it 
-- `npm i` and then `npm run dev` on both the client and server folder to install dependencies and run the project
+`npm i` and then `npm run dev` on both client and server folder 
 
 ## Screenshots 
 
