@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -10,15 +10,17 @@ const ShowBook = () => {
      const [book, setBook] = useState({}); 
      const [loading, setLoading] = useState(false); 
      const {id} = useParams(); 
+     const navigate = useNavigate();
 
      useEffect(() => {
       setLoading(true); 
-      axios.get(`http://localhost:5000/books/${id}`).then((res) => {
+      axios.get(`http://localhost:8000/books/${id}`).then((res) => {
         setBook(res.data);
         setLoading(false);
       }
       ).catch((err) => {
         console.log(err);
+        navigate('/')
         setLoading(false);
       });
       }, [id]);
@@ -87,8 +89,6 @@ const ShowBook = () => {
                   {new Date(book.createdAt).toLocaleDateString()}
                 </span>
                 </div> 
-
-
               </div> 
           )}
         </div>

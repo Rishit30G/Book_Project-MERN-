@@ -16,13 +16,14 @@ const EditBook = () => {
 
   useEffect(()=>{
     setLoading(true);
-    axios.get(`http://localhost:5000/books/${id}`).then((res)=>{
+    axios.get(`http://localhost:8000/books/${id}`).then((res)=>{
       setTitle(res.data.title);
       setAuthor(res.data.author);
       setPublishYear(res.data.publishYear);
       setLoading(false);
     }).catch((err)=>{
       console.log(err);
+      navigate('/');
       setLoading(false);
     })
   },[]);
@@ -35,7 +36,7 @@ const EditBook = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5000/books/${id}`, data)
+      .put(`http://localhost:8000/books/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate("/");

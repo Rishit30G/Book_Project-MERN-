@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
@@ -10,9 +10,22 @@ const DeleteBook = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`http://localhost:8000/books/${id}`)
+      .then((res) => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate('/');
+        setLoading(false);
+      });
+  }, [id, navigate]);
+
   const handleDeleteBook = () => {
     setLoading(true); 
-    axios.delete(`http://localhost:5000/books/${id}`).then((res) => {
+    axios.delete(`http://localhost:8000/books/${id}`).then((res) => {
       setLoading(false);
       navigate('/');
     }).catch((err) => {
