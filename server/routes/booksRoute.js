@@ -80,7 +80,7 @@ router.delete("/:id", async(req, res)=>{
         }
         res.status(200).send({message: "Book deleted"});
     }
-    catch{
+    catch(err){
         console.log(err.message);
         res.status(400).send(err.message);
     }
